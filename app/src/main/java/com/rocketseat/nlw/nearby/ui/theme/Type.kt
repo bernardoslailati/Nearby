@@ -16,53 +16,63 @@ val rubikFontFamily = FontFamily(
 )
 
 val Typography = Typography(
+    // "Title XI"
     headlineLarge = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         lineHeight = 1.4.sp
     ),
+    // "Title Lg"
     headlineMedium = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
     ),
+    // "Title Md"
     headlineSmall = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp
     ),
+    // "Text Sm"
     titleLarge = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp
     ),
+    // "Text Md"
     bodyLarge = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 1.4.sp
     ),
+    // "Text Sm"
     bodyMedium = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 1.4.sp
     ),
+    // "Text Xs"
     bodySmall = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 1.4.sp
     ),
+    // "Action"
     labelLarge = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp
     ),
+    // "Subtitle"
     labelMedium = TextStyle(
         fontFamily = rubikFontFamily,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Medium,
         fontSize = 14.sp
     )
 )
+
