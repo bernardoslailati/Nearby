@@ -20,8 +20,7 @@ val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 1.4.sp
+        fontSize = 24.sp
     ),
     // "Title Lg"
     headlineMedium = TextStyle(
@@ -45,22 +44,19 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 1.4.sp
+        fontSize = 16.sp
     ),
     // "Text Sm"
     bodyMedium = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 1.4.sp
+        fontSize = 14.sp
     ),
     // "Text Xs"
     bodySmall = TextStyle(
         fontFamily = rubikFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 1.4.sp
+        fontSize = 12.sp
     ),
     // "Action"
     labelLarge = TextStyle(
