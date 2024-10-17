@@ -5,7 +5,7 @@ import androidx.compose.runtime.Immutable
 import com.rocketseat.nlw.nearby.R
 
 @Immutable
-enum class LocationFilterType(
+enum class NearbyFilterType(
     val description: String,
     @DrawableRes val icon: Int
 ) {

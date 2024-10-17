@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
 
 @Composable
-fun LocationFilterList(
+fun NearbyFilterList(
     modifier: Modifier = Modifier,
-    types: List<LocationFilterType> = LocationFilterType.entries,
-    onSelectedFilterChange: (LocationFilterType) -> Unit
+    types: List<NearbyFilterType> = NearbyFilterType.entries,
+    onSelectedFilterChange: (NearbyFilterType) -> Unit
 ) {
     var selectedFilterIndex by remember { mutableIntStateOf(types.firstOrNull()?.ordinal ?: -1) }
 
@@ -43,7 +43,7 @@ fun LocationFilterList(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(items = types, key = { it.ordinal }) { filterType ->
-            LocationFilter(
+            NearbyFilter(
                 type = filterType,
                 isSelected = selectedFilterIndex == filterType.ordinal,
                 onClick = { isSelected ->
@@ -67,7 +67,7 @@ private fun LocationFilterListPreview() {
             painter = painterResource(R.drawable.bg_map),
             contentDescription = null
         )
-        LocationFilterList(
+        NearbyFilterList(
             modifier = Modifier,
             onSelectedFilterChange = {
                 Log.d("LocationFilterListPreview", "$it")

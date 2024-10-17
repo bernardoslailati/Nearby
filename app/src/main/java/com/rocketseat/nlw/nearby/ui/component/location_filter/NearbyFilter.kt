@@ -20,10 +20,10 @@ import com.rocketseat.nlw.nearby.ui.theme.GreenBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
-fun LocationFilter(
+fun NearbyFilter(
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
-    type: LocationFilterType,
+    type: NearbyFilterType,
     onClick: (isSelected: Boolean) -> Unit
 ) {
     FilterChip(
@@ -71,11 +71,11 @@ fun LocationFilter(
 @Composable
 private fun LocationFilterPreview(
     @PreviewParameter(
-        LocationFilterTypePreviewParameterProvider::class
-    ) filterTypeAndIsSelected: Pair<LocationFilterType, Boolean>
+        NearbyFilterTypePreviewParameterProvider::class
+    ) filterTypeAndIsSelected: Pair<NearbyFilterType, Boolean>
 ) {
     val (filterType, isSelected) = filterTypeAndIsSelected
-    LocationFilter(
+    NearbyFilter(
         type = filterType,
         isSelected = isSelected,
         onClick = {}
