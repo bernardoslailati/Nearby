@@ -23,7 +23,7 @@ import com.rocketseat.nlw.nearby.ui.theme.Typography
 @Composable
 fun NearbyButton(
     modifier: Modifier = Modifier,
-    text: String,
+    text: String? = null,
     @DrawableRes iconRes: Int? = null,
     onClick: () -> Unit
 ) {
@@ -44,7 +44,9 @@ fun NearbyButton(
                     contentDescription = "Ícone do Botão"
                 )
             }
-            Text(text = text.uppercase(), style = Typography.labelLarge)
+            text?.let {
+                Text(text = text.uppercase(), style = Typography.labelLarge)
+            }
         }
     }
 }
@@ -54,8 +56,8 @@ fun NearbyButton(
 private fun NearbyButtonWithIconPreview() {
     NearbyButton(
         modifier = Modifier.fillMaxWidth(),
-        text = "Começar",
-        iconRes = R.drawable.ic_arrow_left,
+        text = "Ler QRCode",
+        iconRes = R.drawable.ic_scan,
         onClick = {}
     )
 }
@@ -66,6 +68,15 @@ private fun NearbyButtonWithoutIconPreview() {
     NearbyButton(
         modifier = Modifier.fillMaxWidth(),
         text = "Começar",
+        onClick = {}
+    )
+}
+
+@Preview
+@Composable
+private fun NearbyIconButtonPreview() {
+    NearbyButton(
+        iconRes = R.drawable.ic_arrow_left,
         onClick = {}
     )
 }
