@@ -15,67 +15,60 @@ val rubikFontFamily = FontFamily(
     Font(R.font.rubik_semibold, FontWeight.SemiBold)
 )
 
+private const val activatePreview = false
+
 val Typography = Typography(
     // "Title XI"
     headlineLarge = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp
     ),
     // "Title Lg"
     headlineMedium = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
     ),
     // "Title Md"
     headlineSmall = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp
     ),
     // "Text Sm"
     titleLarge = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp
     ),
     // "Text Md"
     bodyLarge = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
     // "Text Sm"
     bodyMedium = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
     // "Text Xs"
     bodySmall = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp
     ),
     // "Action"
     labelLarge = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp
     ),
     // "Subtitle"
     labelMedium = TextStyle(
-//        fontFamily = rubikFontFamily,
-        fontFamily = FontFamily.Default,
+        fontFamily = if (activatePreview) FontFamily.Default else rubikFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp
     )
