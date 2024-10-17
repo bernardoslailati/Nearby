@@ -18,55 +18,64 @@ val rubikFontFamily = FontFamily(
 val Typography = Typography(
     // "Title XI"
     headlineLarge = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp
     ),
     // "Title Lg"
     headlineMedium = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
     ),
     // "Title Md"
     headlineSmall = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp
     ),
     // "Text Sm"
     titleLarge = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp
     ),
     // "Text Md"
     bodyLarge = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
     // "Text Sm"
     bodyMedium = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
     // "Text Xs"
     bodySmall = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp
     ),
     // "Action"
     labelLarge = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp
     ),
     // "Subtitle"
     labelMedium = TextStyle(
-        fontFamily = rubikFontFamily,
+//        fontFamily = rubikFontFamily,
+        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp
     )
