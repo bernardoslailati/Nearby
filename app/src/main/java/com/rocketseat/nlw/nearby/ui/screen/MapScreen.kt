@@ -1,5 +1,6 @@
 package com.rocketseat.nlw.nearby.ui.screen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,12 +29,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
+import com.rocketseat.nlw.nearby.ui.component.location.NearbyLocation
 import com.rocketseat.nlw.nearby.ui.component.location.NearbyLocationCard
 import com.rocketseat.nlw.nearby.ui.component.location_filter.NearbyFilterList
 import com.rocketseat.nlw.nearby.ui.theme.GreenBase
+import com.rocketseat.nlw.nearby.ui.theme.Typography
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun MapScreen(modifier: Modifier = Modifier) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
@@ -92,16 +96,28 @@ fun MapScreen(modifier: Modifier = Modifier) {
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(count = 5) {
-                    NearbyLocationCard(onClick = {
-                        coroutineScope.launch {
-                            isSheetOpened = false
-                            sheetState.hide()
+                item {
+                    Text(text = "Explore locais perto de você", style = Typography.bodyLarge)
+                }
+                items(count = 5, key = { it }) {
+                    NearbyLocationCard(
+                        nearbyLocation = NearbyLocation(
+                            name = "RocketBurger",
+                            description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
+                            imageUrl = "",
+                            coupons = 0
+                        ),
+                        onClick = {
+                            coroutineScope.launch {
+                                isSheetOpened = false
+                                sheetState.hide()
+                            }
                         }
-                    })
+                    )
                 }
             }
         }
+
 }
 
 @Preview

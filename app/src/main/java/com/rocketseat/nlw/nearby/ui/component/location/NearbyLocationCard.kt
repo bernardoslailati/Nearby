@@ -1,5 +1,6 @@
 package com.rocketseat.nlw.nearby.ui.component.location
 
+import android.text.TextUtils
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -23,11 +24,13 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,8 +42,20 @@ import com.rocketseat.nlw.nearby.ui.theme.Gray500
 import com.rocketseat.nlw.nearby.ui.theme.RedBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
+@Immutable
+data class NearbyLocation(
+    val name: String,
+    val description: String,
+    val imageUrl: String,
+    val coupons: Int
+)
+
 @Composable
-fun NearbyLocationCard(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
+fun NearbyLocationCard(
+    modifier: Modifier = Modifier,
+    nearbyLocation: NearbyLocation,
+    onClick: () -> Unit = {}
+) {
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
@@ -57,6 +72,7 @@ fun NearbyLocationCard(modifier: Modifier = Modifier, onClick: () -> Unit = {}) 
                 .fillMaxWidth()
                 .background(Gray100)
                 .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Image(
@@ -71,12 +87,14 @@ fun NearbyLocationCard(modifier: Modifier = Modifier, onClick: () -> Unit = {}) 
             )
             Column {
                 Text(
-                    text = "RocketBurger",
+                    text = nearbyLocation.name,
                     style = Typography.headlineSmall.copy(fontSize = 14.sp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
+                    text = nearbyLocation.description,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                     color = Gray500,
                     style = Typography.bodyLarge.copy(fontSize = 12.sp)
                 )
@@ -87,12 +105,12 @@ fun NearbyLocationCard(modifier: Modifier = Modifier, onClick: () -> Unit = {}) 
                 ) {
                     Icon(
                         modifier = Modifier.size(24.dp),
-                        tint = RedBase,
+                        tint = if (nearbyLocation.coupons > 0) RedBase else Gray400,
                         painter = painterResource(R.drawable.ic_ticket),
                         contentDescription = "Ícone de Cupom"
                     )
                     Text(
-                        text = "3 cupons disponíveis",
+                        text = "${nearbyLocation.coupons} cupons disponíveis",
                         style = Typography.bodyMedium.copy(fontSize = 12.sp),
                         color = Gray400
                     )
@@ -106,7 +124,14 @@ fun NearbyLocationCard(modifier: Modifier = Modifier, onClick: () -> Unit = {}) 
 @Preview
 @Composable
 private fun NearbyLocationCardPreview() {
-    NearbyLocationCard()
+    NearbyLocationCard(
+        nearbyLocation = NearbyLocation(
+            name = "RocketBurger",
+            description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
+            imageUrl = "",
+            coupons = 1
+        )
+    )
 }
 
 @Preview
@@ -119,7 +144,14 @@ private fun NearbyLocationCardListPreview() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(count = 5) {
-            NearbyLocationCard()
+            NearbyLocationCard(
+                nearbyLocation = NearbyLocation(
+                    name = "RocketBurger",
+                    description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
+                    imageUrl = "",
+                    coupons = 1
+                )
+            )
         }
     }
 }
@@ -140,7 +172,14 @@ private fun NearbyLocationCardsBottomSheetPreview() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(count = 5) {
-                    NearbyLocationCard()
+                    NearbyLocationCard(
+                        nearbyLocation = NearbyLocation(
+                            name = "RocketBurger",
+                            description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
+                            imageUrl = "",
+                            coupons = 1
+                        )
+                    )
                 }
             }
         }
