@@ -40,7 +40,7 @@ import com.rocketseat.nlw.nearby.ui.theme.RedBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
-fun NearbyLocationCard(modifier: Modifier = Modifier) {
+fun NearbyLocationCard(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
     Card(
         modifier = modifier
             .clip(RoundedCornerShape(12.dp))
@@ -49,13 +49,14 @@ fun NearbyLocationCard(modifier: Modifier = Modifier) {
                 width = 1.dp,
                 color = Gray200,
                 shape = RoundedCornerShape(12.dp)
-            )
-            .padding(8.dp)
+            ),
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Gray100),
+                .background(Gray100)
+                .padding(8.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Image(
