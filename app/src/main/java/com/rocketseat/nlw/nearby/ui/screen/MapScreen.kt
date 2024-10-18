@@ -1,6 +1,5 @@
 package com.rocketseat.nlw.nearby.ui.screen
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,7 +35,7 @@ import com.rocketseat.nlw.nearby.ui.theme.GreenBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(modifier: Modifier = Modifier) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
@@ -64,7 +63,7 @@ fun MapScreen(modifier: Modifier = Modifier) {
             iconButton = it.icon
         }
 
-        if (iconButton > 0)
+        if (iconButton > 0) {
             FloatingActionButton(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
@@ -80,9 +79,10 @@ fun MapScreen(modifier: Modifier = Modifier) {
             ) {
                 Icon(painter = painterResource(iconButton), contentDescription = null)
             }
+        }
     }
 
-    if (isSheetOpened)
+    if (isSheetOpened) {
         ModalBottomSheet(
             modifier = Modifier.fillMaxSize(),
             sheetState = sheetState,
@@ -117,7 +117,7 @@ fun MapScreen(modifier: Modifier = Modifier) {
                 }
             }
         }
-
+    }
 }
 
 @Preview
