@@ -105,7 +105,7 @@ fun MapScreen(modifier: Modifier = Modifier) {
                             name = "RocketBurger",
                             description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
                             imageUrl = "",
-                            coupons = 0
+                            coupons = it
                         ),
                         onClick = {
                             coroutineScope.launch {
