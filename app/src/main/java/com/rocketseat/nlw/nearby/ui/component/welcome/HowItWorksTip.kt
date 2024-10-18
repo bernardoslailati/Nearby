@@ -1,6 +1,7 @@
 package com.rocketseat.nlw.nearby.ui.component.welcome
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,11 +12,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
-import com.rocketseat.nlw.nearby.ui.theme.NearbyTheme
+import com.rocketseat.nlw.nearby.ui.theme.Gray500
 import com.rocketseat.nlw.nearby.ui.theme.RedBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
@@ -33,9 +35,12 @@ fun HowItWorksTip(
             tint = RedBase,
             contentDescription = null
         )
-        Column(modifier = Modifier.padding(top = 4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column(
+            modifier = Modifier.padding(top = 4.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
             Text(text = title, style = Typography.headlineSmall)
-            Text(text = subtitle, style = Typography.bodyLarge)
+            Text(text = subtitle, color = Gray500, style = Typography.bodyLarge)
         }
     }
 }
@@ -43,14 +48,12 @@ fun HowItWorksTip(
 @Preview
 @Composable
 private fun HowItWorksTipPreview() {
-    NearbyTheme {
-        Column {
-            HowItWorksTip(
-                modifier = Modifier.fillMaxWidth(),
-                title = "Encontre estabelecimentos",
-                subtitle = "Veja locais perto de você que são parceiros Nearby",
-                iconRes = R.drawable.ic_map_pin
-            )
-        }
-    }
+    HowItWorksTip(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White),
+        title = "Encontre estabelecimentos",
+        subtitle = "Veja locais perto de você que são parceiros Nearby",
+        iconRes = R.drawable.ic_map_pin
+    )
 }
