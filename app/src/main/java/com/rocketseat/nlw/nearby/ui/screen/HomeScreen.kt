@@ -30,6 +30,7 @@ import com.rocketseat.nlw.nearby.data.model.mock.mockCategories
 import com.rocketseat.nlw.nearby.data.model.mock.mockMarkets
 import com.rocketseat.nlw.nearby.ui.component.category.CategoryFilterChipList
 import com.rocketseat.nlw.nearby.ui.component.market.MarketCardList
+import com.rocketseat.nlw.nearby.ui.theme.Gray100
 import com.rocketseat.nlw.nearby.ui.theme.GreenBase
 import kotlinx.coroutines.launch
 
@@ -39,7 +40,8 @@ fun HomeScreen(modifier: Modifier = Modifier, onNavigateToMarketDetails: (Market
 
     val coroutineScope = rememberCoroutineScope()
 
-    val marketsBottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
+    val marketsBottomSheetState =
+        rememberModalBottomSheetState(skipPartiallyExpanded = false)
     var isMarketsBottomSheetOpened by remember { mutableStateOf(true) }
 
     var selectedCategoryIcon by remember { mutableIntStateOf(-1) }
@@ -60,7 +62,13 @@ fun HomeScreen(modifier: Modifier = Modifier, onNavigateToMarketDetails: (Market
                 .align(Alignment.TopStart),
             categories = mockCategories,
             onSelectedCategoryChange = { selectedCategory ->
-                selectedCategory.icon?.let { selectedCategoryIcon = it }
+                selectedCategory.icon?.let {
+                    selectedCategoryIcon = it
+                    coroutineScope.launch {
+                        isMarketsBottomSheetOpened = true
+                        marketsBottomSheetState.partialExpand()
+                    }
+                }
             }
         )
 
@@ -85,9 +93,8 @@ fun HomeScreen(modifier: Modifier = Modifier, onNavigateToMarketDetails: (Market
 
     if (isMarketsBottomSheetOpened) {
         ModalBottomSheet(
-            modifier = Modifier.fillMaxSize(),
             sheetState = marketsBottomSheetState,
-            containerColor = Color.White,
+            containerColor = Gray100,
             tonalElevation = 0.dp,
             scrimColor = Color.Transparent,
             onDismissRequest = { isMarketsBottomSheetOpened = false }

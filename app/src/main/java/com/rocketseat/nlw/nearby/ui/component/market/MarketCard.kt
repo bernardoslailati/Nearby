@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.rocketseat.nlw.nearby.R
 import com.rocketseat.nlw.nearby.data.model.Market
 import com.rocketseat.nlw.nearby.data.model.mock.mockMarket
@@ -62,14 +63,14 @@ fun MarketCard(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Image(
+            AsyncImage(
                 modifier = Modifier
                     .clip(RoundedCornerShape(12.dp))
                     .fillMaxWidth(0.35f)
                     .height(IntrinsicSize.Min)
                     .aspectRatio(ratio = 1f, matchHeightConstraintsFirst = true),
                 contentScale = ContentScale.Crop,
-                painter = painterResource(id = R.drawable.img_burger),
+                model = market.cover,
                 contentDescription = "Imagem de Local Próximo"
             )
             Column {
