@@ -9,21 +9,15 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rocketseat.nlw.nearby.R
+import com.rocketseat.nlw.nearby.data.model.Market
+import com.rocketseat.nlw.nearby.data.model.mock.mockMarket
 import com.rocketseat.nlw.nearby.ui.theme.Gray100
 import com.rocketseat.nlw.nearby.ui.theme.Gray200
 import com.rocketseat.nlw.nearby.ui.theme.Gray400
@@ -41,19 +37,11 @@ import com.rocketseat.nlw.nearby.ui.theme.Gray500
 import com.rocketseat.nlw.nearby.ui.theme.RedBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
-@Immutable
-data class NearbyLocation(
-    val name: String,
-    val description: String,
-    val imageUrl: String,
-    val coupons: Int
-)
-
 @Composable
 fun MarketCard(
     modifier: Modifier = Modifier,
-    nearbyLocation: NearbyLocation,
-    onClick: () -> Unit = {}
+    market: Market,
+    onClick: (Market) -> Unit = {}
 ) {
     Card(
         modifier = modifier
@@ -64,7 +52,7 @@ fun MarketCard(
                 color = Gray200,
                 shape = RoundedCornerShape(12.dp)
             ),
-        onClick = onClick
+        onClick = { onClick(market) }
     ) {
         Row(
             modifier = Modifier
@@ -86,12 +74,12 @@ fun MarketCard(
             )
             Column {
                 Text(
-                    text = nearbyLocation.name,
+                    text = market.name,
                     style = Typography.headlineSmall.copy(fontSize = 14.sp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = nearbyLocation.description,
+                    text = market.description,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     color = Gray500,
@@ -104,12 +92,12 @@ fun MarketCard(
                 ) {
                     Icon(
                         modifier = Modifier.size(24.dp),
-                        tint = if (nearbyLocation.coupons > 0) RedBase else Gray400,
+                        tint = if (market.coupons > 0) RedBase else Gray400,
                         painter = painterResource(R.drawable.ic_ticket),
                         contentDescription = "Ícone de Cupom"
                     )
                     Text(
-                        text = "${nearbyLocation.coupons} cupons disponíveis",
+                        text = "${market.coupons} cupons disponíveis",
                         style = Typography.bodyMedium.copy(fontSize = 12.sp),
                         color = Gray400
                     )
@@ -122,65 +110,8 @@ fun MarketCard(
 
 @Preview
 @Composable
-private fun NearbyLocationCardPreview() {
+private fun MarketCardPreview() {
     MarketCard(
-        nearbyLocation = NearbyLocation(
-            name = "RocketBurger",
-            description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
-            imageUrl = "",
-            coupons = 1
-        )
+        market = mockMarket
     )
-}
-
-@Preview
-@Composable
-private fun NearbyLocationCardListPreview() {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        items(count = 5) {
-            MarketCard(
-                nearbyLocation = NearbyLocation(
-                    name = "RocketBurger",
-                    description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
-                    imageUrl = "",
-                    coupons = 1
-                )
-            )
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
-@Composable
-private fun NearbyLocationCardsBottomSheetPreview() {
-    Column {
-        ModalBottomSheet(
-            sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
-            onDismissRequest = {}
-        ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(count = 5) {
-                    MarketCard(
-                        nearbyLocation = NearbyLocation(
-                            name = "RocketBurger",
-                            description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
-                            imageUrl = "",
-                            coupons = 1
-                        )
-                    )
-                }
-            }
-        }
-    }
 }

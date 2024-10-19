@@ -1,17 +1,14 @@
 package com.rocketseat.nlw.nearby.ui.screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,22 +25,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
-import com.rocketseat.nlw.nearby.ui.component.market.NearbyLocation
-import com.rocketseat.nlw.nearby.ui.component.market.MarketCard
+import com.rocketseat.nlw.nearby.data.model.mock.mockCategories
+import com.rocketseat.nlw.nearby.data.model.mock.mockMarkets
 import com.rocketseat.nlw.nearby.ui.component.category.CategoryFilterChipList
+import com.rocketseat.nlw.nearby.ui.component.market.MarketCardList
 import com.rocketseat.nlw.nearby.ui.theme.GreenBase
-import com.rocketseat.nlw.nearby.ui.theme.Typography
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(modifier: Modifier = Modifier) {
-    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
-    var isSheetOpened by remember { mutableStateOf(true) }
-
-    var iconButton by remember { mutableIntStateOf(-1) }
 
     val coroutineScope = rememberCoroutineScope()
+
+    val marketsBottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
+    var isMarketsBottomSheetOpened by remember { mutableStateOf(true) }
+
+    var selectedCategoryIcon by remember { mutableIntStateOf(-1) }
 
     Box(
         modifier = modifier.fillMaxSize()
@@ -58,12 +56,14 @@ fun MapScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 24.dp)
-                .align(Alignment.TopStart)
-        ) {
-            iconButton = it.icon
-        }
+                .align(Alignment.TopStart),
+            categories = mockCategories,
+            onSelectedCategoryChange = { selectedCategory ->
+                selectedCategory.icon?.let { selectedCategoryIcon = it }
+            }
+        )
 
-        if (iconButton > 0) {
+        if (selectedCategoryIcon > 0) {
             FloatingActionButton(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
@@ -72,50 +72,36 @@ fun MapScreen(modifier: Modifier = Modifier) {
                 contentColor = Color.White,
                 onClick = {
                     coroutineScope.launch {
-                        isSheetOpened = true
-                        sheetState.partialExpand()
+                        isMarketsBottomSheetOpened = true
+                        marketsBottomSheetState.partialExpand()
                     }
                 }
             ) {
-                Icon(painter = painterResource(iconButton), contentDescription = null)
+                Icon(painter = painterResource(selectedCategoryIcon), contentDescription = null)
             }
         }
     }
 
-    if (isSheetOpened) {
+    if (isMarketsBottomSheetOpened) {
         ModalBottomSheet(
             modifier = Modifier.fillMaxSize(),
-            sheetState = sheetState,
+            sheetState = marketsBottomSheetState,
             containerColor = Color.White,
             tonalElevation = 0.dp,
-            onDismissRequest = { isSheetOpened = false }
+            onDismissRequest = { isMarketsBottomSheetOpened = false }
         ) {
-            LazyColumn(
+            MarketCardList(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                item {
-                    Text(text = "Explore locais perto de você", style = Typography.bodyLarge)
+                markets = mockMarkets,
+                onMarketClick = {
+                    coroutineScope.launch {
+                        isMarketsBottomSheetOpened = false
+                        marketsBottomSheetState.hide()
+                    }
                 }
-                items(count = 5, key = { it }) {
-                    MarketCard(
-                        nearbyLocation = NearbyLocation(
-                            name = "RocketBurger",
-                            description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
-                            imageUrl = "",
-                            coupons = it
-                        ),
-                        onClick = {
-                            coroutineScope.launch {
-                                isSheetOpened = false
-                                sheetState.hide()
-                            }
-                        }
-                    )
-                }
-            }
+            )
         }
     }
 }
