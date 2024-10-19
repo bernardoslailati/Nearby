@@ -10,8 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,17 +25,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
+import com.rocketseat.nlw.nearby.data.model.Market
+import com.rocketseat.nlw.nearby.data.model.mock.mockMarket
 import com.rocketseat.nlw.nearby.ui.component.button.NearbyButton
-import com.rocketseat.nlw.nearby.ui.component.market_details.NearbyLocationDetailsInfos
-import com.rocketseat.nlw.nearby.ui.component.market_details.NearbyLocationDetailsRegulations
-import com.rocketseat.nlw.nearby.ui.component.market_details.NearbyLocationDetailsUsesCoupon
+import com.rocketseat.nlw.nearby.ui.component.market_details.MarketDetailsInfos
+import com.rocketseat.nlw.nearby.ui.component.market_details.MarketDetailsRules
+import com.rocketseat.nlw.nearby.ui.component.market_details.MarketDetailsUsesCoupon
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
-fun LocationDetailsScreen(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.fillMaxSize()
-    ) {
+fun MarketDetailsScreen(
+    modifier: Modifier = Modifier,
+    market: Market,
+    coupons: List<String>,
+    onScanQRCode: () -> Unit
+) {
+    Box(modifier = modifier.fillMaxSize()) {
         Image(
             modifier = Modifier
                 .fillMaxWidth()
@@ -54,36 +60,45 @@ fun LocationDetailsScreen(modifier: Modifier = Modifier) {
         ) {
             Column(
                 modifier = Modifier
-                    .wrapContentSize()
+                    .fillMaxHeight()
                     .padding(36.dp)
             ) {
-                Column {
-                    Text(text = "RocketBurger", style = Typography.headlineLarge)
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
-                        style = Typography.bodyLarge
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Column {
+                        Text(text = market.name, style = Typography.headlineLarge)
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = market.description,
+                            style = Typography.bodyLarge
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(48.dp))
+                    MarketDetailsInfos(market = market)
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp)
                     )
+                    MarketDetailsRules(rules = market.rules)
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp)
+                    )
+                    MarketDetailsUsesCoupon(coupons = coupons)
                 }
-                Spacer(modifier = Modifier.height(48.dp))
-                NearbyLocationDetailsInfos()
-                HorizontalDivider(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 24.dp))
-                NearbyLocationDetailsRegulations()
-                HorizontalDivider(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 24.dp))
-                NearbyLocationDetailsUsesCoupon()
-            }
 
-            NearbyButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomStart)
-                    .padding(16.dp),
-                text = "Ler QR Code"
-            ) { }
+                NearbyButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 24.dp),
+                    text = "Ler QR Code"
+                ) { }
+            }
         }
 
         NearbyButton(
@@ -91,12 +106,18 @@ fun LocationDetailsScreen(modifier: Modifier = Modifier) {
                 .align(Alignment.TopStart)
                 .padding(24.dp),
             iconRes = R.drawable.ic_arrow_left
-        ) { }
+        ) {
+            onScanQRCode()
+        }
     }
 }
 
 @Preview
 @Composable
 private fun LocationDetailsScreenPreview() {
-    LocationDetailsScreen()
+    MarketDetailsScreen(
+        market = mockMarket,
+        coupons = listOf("AM4345T1", "BM4345T2"),
+        onScanQRCode = {}
+    )
 }

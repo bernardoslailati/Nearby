@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,33 +25,36 @@ import com.rocketseat.nlw.nearby.ui.theme.GreenExtraLight
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
-fun NearbyLocationDetailsUsesCoupon(modifier: Modifier = Modifier) {
+fun MarketDetailsUsesCoupon(modifier: Modifier = Modifier, coupons: List<String>) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(text = "Utilize esse cupom", style = Typography.headlineSmall, color = Gray400)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(4.dp))
-                .background(
-                    GreenExtraLight
+        coupons.forEach { coupon ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(
+                        GreenExtraLight
+                    )
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    painter = painterResource(R.drawable.ic_ticket),
+                    tint = GreenBase,
+                    contentDescription = "Ícone Cupons"
                 )
-                .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Icon(
-                modifier = Modifier.size(24.dp),
-                painter = painterResource(R.drawable.ic_ticket),
-                tint = GreenBase,
-                contentDescription = "Ícone Cupons"
-            )
-            Text(
-                text = "FM4345T6",
-                style = Typography.headlineSmall
-            )
+                Text(
+                    text = coupon,
+                    style = Typography.headlineSmall
+                )
+            }
         }
     }
 }
@@ -58,5 +62,5 @@ fun NearbyLocationDetailsUsesCoupon(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun NearbyLocationDetailsUsesCouponPreview() {
-    NearbyLocationDetailsUsesCoupon()
+    MarketDetailsUsesCoupon(coupons = listOf("AM4345T1", "BM4345T2"))
 }
