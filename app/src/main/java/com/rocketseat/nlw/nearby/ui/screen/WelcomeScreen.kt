@@ -22,7 +22,7 @@ import com.rocketseat.nlw.nearby.ui.component.welcome.HowItWorksTip
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
-fun WelcomeScreen(modifier: Modifier = Modifier) {
+fun WelcomeScreen(modifier: Modifier = Modifier, onNavigateToMap: () -> Unit) {
     Column(
         modifier = modifier
             .padding(horizontal = 40.dp, vertical = 48.dp)
@@ -70,7 +70,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
         NearbyButton(
             modifier = Modifier.fillMaxWidth(),
             text = "Começar",
-            onClick = {}
+            onClick = onNavigateToMap
         )
     }
 }
@@ -78,5 +78,5 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun WelcomeScreenPreview() {
-    WelcomeScreen(modifier = Modifier)
+    WelcomeScreen(modifier = Modifier, onNavigateToMap = {})
 }

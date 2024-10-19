@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
 import com.rocketseat.nlw.nearby.data.model.Market
 import com.rocketseat.nlw.nearby.data.model.mock.mockMarket
+import com.rocketseat.nlw.nearby.data.model.mock.mockRules
 import com.rocketseat.nlw.nearby.ui.component.button.NearbyButton
 import com.rocketseat.nlw.nearby.ui.component.market_details.MarketDetailsInfos
 import com.rocketseat.nlw.nearby.ui.component.market_details.MarketDetailsRules
@@ -38,7 +39,8 @@ fun MarketDetailsScreen(
     modifier: Modifier = Modifier,
     market: Market,
     coupons: List<String>,
-    onScanQRCode: () -> Unit
+    onScanQRCode: () -> Unit,
+    onNavigateBack: () -> Unit
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         Image(
@@ -83,7 +85,7 @@ fun MarketDetailsScreen(
                             .fillMaxWidth()
                             .padding(vertical = 24.dp)
                     )
-                    MarketDetailsRules(rules = market.rules)
+                    MarketDetailsRules(rules = mockRules)
                     HorizontalDivider(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -96,8 +98,9 @@ fun MarketDetailsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 24.dp),
-                    text = "Ler QR Code"
-                ) { }
+                    text = "Ler QR Code",
+                    onClick = onScanQRCode
+                )
             }
         }
 
@@ -105,10 +108,9 @@ fun MarketDetailsScreen(
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .padding(24.dp),
-            iconRes = R.drawable.ic_arrow_left
-        ) {
-            onScanQRCode()
-        }
+            iconRes = R.drawable.ic_arrow_left,
+            onClick = onNavigateBack
+        )
     }
 }
 
@@ -118,6 +120,7 @@ private fun LocationDetailsScreenPreview() {
     MarketDetailsScreen(
         market = mockMarket,
         coupons = listOf("AM4345T1", "BM4345T2"),
-        onScanQRCode = {}
+        onScanQRCode = {},
+        onNavigateBack = {}
     )
 }

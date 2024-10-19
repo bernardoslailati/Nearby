@@ -25,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
+import com.rocketseat.nlw.nearby.data.model.Market
 import com.rocketseat.nlw.nearby.data.model.mock.mockCategories
 import com.rocketseat.nlw.nearby.data.model.mock.mockMarkets
 import com.rocketseat.nlw.nearby.ui.component.category.CategoryFilterChipList
@@ -34,7 +35,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MapScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier, onNavigateToMarketDetails: (Market) -> Unit) {
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -88,6 +89,7 @@ fun MapScreen(modifier: Modifier = Modifier) {
             sheetState = marketsBottomSheetState,
             containerColor = Color.White,
             tonalElevation = 0.dp,
+            scrimColor = Color.Transparent,
             onDismissRequest = { isMarketsBottomSheetOpened = false }
         ) {
             MarketCardList(
@@ -95,10 +97,11 @@ fun MapScreen(modifier: Modifier = Modifier) {
                     .fillMaxSize()
                     .padding(16.dp),
                 markets = mockMarkets,
-                onMarketClick = {
+                onMarketClick = { selectedMarket ->
                     coroutineScope.launch {
                         isMarketsBottomSheetOpened = false
                         marketsBottomSheetState.hide()
+                        onNavigateToMarketDetails(selectedMarket)
                     }
                 }
             )
@@ -108,6 +111,6 @@ fun MapScreen(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun MapScreenPreview() {
-    MapScreen()
+private fun HomeScreenPreview() {
+    HomeScreen(onNavigateToMarketDetails = {})
 }
