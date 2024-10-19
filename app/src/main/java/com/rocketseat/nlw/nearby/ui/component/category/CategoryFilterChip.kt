@@ -23,7 +23,7 @@ import com.rocketseat.nlw.nearby.ui.theme.Typography
 fun CategoryFilterChip(
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
-    type: CategoryFilterChipType,
+    type: CategoryFilterChipView,
     onClick: (isSelected: Boolean) -> Unit
 ) {
     FilterChip(
@@ -72,7 +72,7 @@ fun CategoryFilterChip(
 private fun CategoryFilterChipPreview(
     @PreviewParameter(
         CategoryFilterChipPreviewParameterProvider::class
-    ) filterTypeAndIsSelected: Pair<CategoryFilterChipType, Boolean>
+    ) filterTypeAndIsSelected: Pair<CategoryFilterChipView, Boolean>
 ) {
     val (filterType, isSelected) = filterTypeAndIsSelected
     CategoryFilterChip(

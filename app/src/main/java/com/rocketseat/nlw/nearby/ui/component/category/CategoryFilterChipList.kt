@@ -25,8 +25,8 @@ import com.rocketseat.nlw.nearby.R
 @Composable
 fun CategoryFilterChipList(
     modifier: Modifier = Modifier,
-    types: List<CategoryFilterChipType> = CategoryFilterChipType.entries,
-    onSelectedFilterChange: (CategoryFilterChipType) -> Unit
+    types: List<CategoryFilterChipView> = CategoryFilterChipView.entries,
+    onSelectedFilterChange: (CategoryFilterChipView) -> Unit
 ) {
     var selectedFilterIndex by remember { mutableIntStateOf(types.firstOrNull()?.ordinal ?: -1) }
 

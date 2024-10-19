@@ -5,7 +5,7 @@ import androidx.compose.runtime.Immutable
 import com.rocketseat.nlw.nearby.R
 
 @Immutable
-enum class CategoryFilterChipType(
+enum class CategoryFilterChipView(
     val description: String,
     @DrawableRes val icon: Int
 ) {
@@ -15,5 +15,12 @@ enum class CategoryFilterChipType(
     SUPERMERCADO(description = "Supermercado", icon = R.drawable.ic_shopping_cart),
     ENTRETENIMENTO(description = "Entretenimento", icon = R.drawable.ic_movie),
     FARMACIA(description = "Farmácia", icon = R.drawable.ic_first_aid_kit),
-    COMBUSTIVEL(description = "Combustível", icon = R.drawable.ic_gas_station)
+    COMBUSTIVEL(description = "Combustível", icon = R.drawable.ic_gas_station),
+    PADARIA(description = "Padaria", icon = R.drawable.ic_bakery);
+
+    companion object {
+        fun fromDescription(description: String): CategoryFilterChipView? {
+            return entries.find { it.description == description }
+        }
+    }
 }
