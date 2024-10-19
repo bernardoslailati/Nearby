@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,11 +26,12 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .padding(horizontal = 40.dp, vertical = 48.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .verticalScroll(state = rememberScrollState()),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.img_logo_icon),
@@ -53,15 +56,15 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
             )
             HowItWorksTip(
                 modifier = Modifier.fillMaxWidth(),
-                title = "Encontre estabelecimentos",
-                subtitle = "Veja locais perto de você que são parceiros Nearby",
-                iconRes = R.drawable.ic_map_pin
+                title = "Ative o cupom com QR Code",
+                subtitle = "Escaneie o código no estabelecimento para usar o benefício",
+                iconRes = R.drawable.ic_qrcode
             )
             HowItWorksTip(
                 modifier = Modifier.fillMaxWidth(),
-                title = "Encontre estabelecimentos",
-                subtitle = "Veja locais perto de você que são parceiros Nearby",
-                iconRes = R.drawable.ic_map_pin
+                title = "Garanta vantagens perto de você",
+                subtitle = "Ative cupons onde estiver, em diferentes tipos de estabelecimento ",
+                iconRes = R.drawable.ic_ticket
             )
         }
         NearbyButton(

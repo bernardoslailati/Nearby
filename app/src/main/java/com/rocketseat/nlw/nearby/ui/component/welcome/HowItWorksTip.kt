@@ -28,7 +28,7 @@ fun HowItWorksTip(
     subtitle: String,
     @DrawableRes iconRes: Int
 ) {
-    Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
         Icon(
             modifier = Modifier.size(32.dp),
             painter = painterResource(id = iconRes),
@@ -36,8 +36,8 @@ fun HowItWorksTip(
             contentDescription = null
         )
         Column(
-            modifier = Modifier.padding(top = 4.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
+            modifier = Modifier.padding(top = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(text = title, style = Typography.headlineSmall)
             Text(text = subtitle, color = Gray500, style = Typography.bodyLarge)
