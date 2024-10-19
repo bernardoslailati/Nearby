@@ -12,7 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -21,19 +21,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
+import com.rocketseat.nlw.nearby.data.model.Category
+import com.rocketseat.nlw.nearby.data.model.mock.mockCategories
 
 @Composable
 fun CategoryFilterChipList(
     modifier: Modifier = Modifier,
-    types: List<CategoryFilterChipView> = CategoryFilterChipView.entries,
-    onSelectedFilterChange: (CategoryFilterChipView) -> Unit
+    categories: List<Category>,
+    onSelectedCategoryChange: (Category) -> Unit
 ) {
-    var selectedFilterIndex by remember { mutableIntStateOf(types.firstOrNull()?.ordinal ?: -1) }
+    var selectedCategoryId by remember { mutableStateOf(categories.firstOrNull()?.id.orEmpty()) }
 
-    LaunchedEffect(selectedFilterIndex) {
-        val selectedFilterOrNull = types.getOrNull(selectedFilterIndex)
-        selectedFilterOrNull?.let { selectedFilter ->
-            onSelectedFilterChange(selectedFilter)
+    LaunchedEffect(selectedCategoryId) {
+        val selectedCategoryOrNull = categories.find { it.id == selectedCategoryId }
+        selectedCategoryOrNull?.let { selectedCategory ->
+            onSelectedCategoryChange(selectedCategory)
         }
     }
 
@@ -42,13 +44,13 @@ fun CategoryFilterChipList(
         contentPadding = PaddingValues(horizontal = 24.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(items = types, key = { it.ordinal }) { filterType ->
+        items(items = categories, key = { it.id }) { category ->
             CategoryFilterChip(
-                type = filterType,
-                isSelected = selectedFilterIndex == filterType.ordinal,
+                category = category,
+                isSelected = selectedCategoryId == category.id,
                 onClick = { isSelected ->
                     if (isSelected)
-                        selectedFilterIndex = filterType.ordinal
+                        selectedCategoryId = category.id
                 }
             )
         }
@@ -69,7 +71,8 @@ private fun CategoryFilterChipListPreview() {
         )
         CategoryFilterChipList(
             modifier = Modifier,
-            onSelectedFilterChange = {
+            categories = mockCategories,
+            onSelectedCategoryChange = {
                 Log.d("CategoryFilterChipListPreview", "$it")
             }
         )

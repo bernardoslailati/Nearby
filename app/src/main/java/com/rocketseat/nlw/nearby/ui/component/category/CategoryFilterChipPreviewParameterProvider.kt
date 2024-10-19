@@ -1,21 +1,23 @@
 package com.rocketseat.nlw.nearby.ui.component.category
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.rocketseat.nlw.nearby.data.model.Category
+import com.rocketseat.nlw.nearby.data.model.mock.mockCategories
 
 class CategoryFilterChipPreviewParameterProvider :
-    PreviewParameterProvider<Pair<CategoryFilterChipView, Boolean>> {
-    override val values: Sequence<Pair<CategoryFilterChipView, Boolean>>
+    PreviewParameterProvider<Pair<Category, Boolean>> {
+    override val values: Sequence<Pair<Category, Boolean>>
         get() {
-            val notSelectedFilters: List<Pair<CategoryFilterChipView, Boolean>> =
-                CategoryFilterChipView.entries.associateWith { false }
+            val notSelectedFilters: List<Pair<Category, Boolean>> =
+                mockCategories.associateWith { false }
                     .toList()
-            val selectedFilters: List<Pair<CategoryFilterChipView, Boolean>> =
-                CategoryFilterChipView.entries.associateWith { true }
+            val selectedFilters: List<Pair<Category, Boolean>> =
+                mockCategories.associateWith { true }
                     .toList()
 
             return sequenceOf(
                 *((notSelectedFilters + selectedFilters)
-                    .sortedBy { (filterType, _) -> filterType.ordinal })
+                    .sortedBy { (category, _) -> category.name })
                     .toTypedArray()
             )
         }

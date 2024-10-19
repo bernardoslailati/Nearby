@@ -13,7 +13,7 @@ enum class CategoryFilterChipView(
     COMPRAS(description = "Compras", icon = R.drawable.ic_shopping_bag),
     HOSPEDAGEM(description = "Hospedagem", icon = R.drawable.ic_bed),
     SUPERMERCADO(description = "Supermercado", icon = R.drawable.ic_shopping_cart),
-    ENTRETENIMENTO(description = "Entretenimento", icon = R.drawable.ic_movie),
+    ENTRETENIMENTO(description = "Cinema", icon = R.drawable.ic_movie),
     FARMACIA(description = "Farmácia", icon = R.drawable.ic_first_aid_kit),
     COMBUSTIVEL(description = "Combustível", icon = R.drawable.ic_gas_station),
     PADARIA(description = "Padaria", icon = R.drawable.ic_bakery);

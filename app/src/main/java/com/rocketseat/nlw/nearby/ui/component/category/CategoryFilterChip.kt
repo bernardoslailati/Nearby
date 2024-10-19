@@ -14,6 +14,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.rocketseat.nlw.nearby.data.model.Category
+import com.rocketseat.nlw.nearby.data.model.mock.mockCategory
 import com.rocketseat.nlw.nearby.ui.theme.Gray300
 import com.rocketseat.nlw.nearby.ui.theme.Gray400
 import com.rocketseat.nlw.nearby.ui.theme.GreenBase
@@ -22,8 +24,8 @@ import com.rocketseat.nlw.nearby.ui.theme.Typography
 @Composable
 fun CategoryFilterChip(
     modifier: Modifier = Modifier,
+    category: Category,
     isSelected: Boolean = false,
-    type: CategoryFilterChipView,
     onClick: (isSelected: Boolean) -> Unit
 ) {
     FilterChip(
@@ -43,12 +45,14 @@ fun CategoryFilterChip(
             selectedContainerColor = GreenBase
         ),
         leadingIcon = {
-            Icon(
-                modifier = Modifier.size(16.dp),
-                painter = painterResource(type.icon),
-                tint = if (isSelected) Color.White else Gray400,
-                contentDescription = null
-            )
+            category.icon?.let { icon ->
+                Icon(
+                    modifier = Modifier.size(16.dp),
+                    painter = painterResource(id = icon),
+                    tint = if (isSelected) Color.White else Gray400,
+                    contentDescription = "Ícone de Categoria"
+                )
+            }
         },
         border = FilterChipDefaults.filterChipBorder(
             enabled = false,
@@ -60,7 +64,7 @@ fun CategoryFilterChip(
         ),
         label = {
             Text(
-                text = type.description, style = Typography.bodyMedium,
+                text = category.name, style = Typography.bodyMedium,
                 color = if (isSelected) Color.White else Gray400
             )
         }
@@ -72,11 +76,11 @@ fun CategoryFilterChip(
 private fun CategoryFilterChipPreview(
     @PreviewParameter(
         CategoryFilterChipPreviewParameterProvider::class
-    ) filterTypeAndIsSelected: Pair<CategoryFilterChipView, Boolean>
+    ) filterTypeAndIsSelected: Pair<Category, Boolean>
 ) {
-    val (filterType, isSelected) = filterTypeAndIsSelected
+    val (category, isSelected) = filterTypeAndIsSelected
     CategoryFilterChip(
-        type = filterType,
+        category = category,
         isSelected = isSelected,
         onClick = {}
     )
