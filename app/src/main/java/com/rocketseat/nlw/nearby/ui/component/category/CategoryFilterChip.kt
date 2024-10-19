@@ -1,4 +1,4 @@
-package com.rocketseat.nlw.nearby.ui.component.location_filter
+package com.rocketseat.nlw.nearby.ui.component.category
 
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -20,10 +20,10 @@ import com.rocketseat.nlw.nearby.ui.theme.GreenBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
-fun NearbyFilter(
+fun CategoryFilterChip(
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
-    type: NearbyFilterType,
+    type: CategoryFilterChipType,
     onClick: (isSelected: Boolean) -> Unit
 ) {
     FilterChip(
@@ -69,13 +69,13 @@ fun NearbyFilter(
 
 @Preview
 @Composable
-private fun LocationFilterPreview(
+private fun CategoryFilterChipPreview(
     @PreviewParameter(
-        NearbyFilterTypePreviewParameterProvider::class
-    ) filterTypeAndIsSelected: Pair<NearbyFilterType, Boolean>
+        CategoryFilterChipPreviewParameterProvider::class
+    ) filterTypeAndIsSelected: Pair<CategoryFilterChipType, Boolean>
 ) {
     val (filterType, isSelected) = filterTypeAndIsSelected
-    NearbyFilter(
+    CategoryFilterChip(
         type = filterType,
         isSelected = isSelected,
         onClick = {}

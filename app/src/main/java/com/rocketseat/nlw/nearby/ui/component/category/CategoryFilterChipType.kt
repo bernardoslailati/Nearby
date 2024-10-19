@@ -1,11 +1,11 @@
-package com.rocketseat.nlw.nearby.ui.component.location_filter
+package com.rocketseat.nlw.nearby.ui.component.category
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 import com.rocketseat.nlw.nearby.R
 
 @Immutable
-enum class NearbyFilterType(
+enum class CategoryFilterChipType(
     val description: String,
     @DrawableRes val icon: Int
 ) {

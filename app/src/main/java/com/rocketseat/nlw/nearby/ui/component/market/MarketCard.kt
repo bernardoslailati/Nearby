@@ -1,6 +1,5 @@
-package com.rocketseat.nlw.nearby.ui.component.location
+package com.rocketseat.nlw.nearby.ui.component.market
 
-import android.text.TextUtils
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -51,7 +50,7 @@ data class NearbyLocation(
 )
 
 @Composable
-fun NearbyLocationCard(
+fun MarketCard(
     modifier: Modifier = Modifier,
     nearbyLocation: NearbyLocation,
     onClick: () -> Unit = {}
@@ -124,7 +123,7 @@ fun NearbyLocationCard(
 @Preview
 @Composable
 private fun NearbyLocationCardPreview() {
-    NearbyLocationCard(
+    MarketCard(
         nearbyLocation = NearbyLocation(
             name = "RocketBurger",
             description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
@@ -144,7 +143,7 @@ private fun NearbyLocationCardListPreview() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(count = 5) {
-            NearbyLocationCard(
+            MarketCard(
                 nearbyLocation = NearbyLocation(
                     name = "RocketBurger",
                     description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",
@@ -172,7 +171,7 @@ private fun NearbyLocationCardsBottomSheetPreview() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(count = 5) {
-                    NearbyLocationCard(
+                    MarketCard(
                         nearbyLocation = NearbyLocation(
                             name = "RocketBurger",
                             description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",

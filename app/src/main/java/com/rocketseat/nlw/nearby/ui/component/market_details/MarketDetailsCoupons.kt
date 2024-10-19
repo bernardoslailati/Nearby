@@ -1,4 +1,4 @@
-package com.rocketseat.nlw.nearby.ui.component.location_details
+package com.rocketseat.nlw.nearby.ui.component.market_details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

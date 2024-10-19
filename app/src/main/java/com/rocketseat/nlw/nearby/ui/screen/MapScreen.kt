@@ -28,9 +28,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
-import com.rocketseat.nlw.nearby.ui.component.location.NearbyLocation
-import com.rocketseat.nlw.nearby.ui.component.location.NearbyLocationCard
-import com.rocketseat.nlw.nearby.ui.component.location_filter.NearbyFilterList
+import com.rocketseat.nlw.nearby.ui.component.market.NearbyLocation
+import com.rocketseat.nlw.nearby.ui.component.market.MarketCard
+import com.rocketseat.nlw.nearby.ui.component.category.CategoryFilterChipList
 import com.rocketseat.nlw.nearby.ui.theme.GreenBase
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 import kotlinx.coroutines.launch
@@ -54,7 +54,7 @@ fun MapScreen(modifier: Modifier = Modifier) {
             contentScale = ContentScale.Crop,
             contentDescription = null
         )
-        NearbyFilterList(
+        CategoryFilterChipList(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 24.dp)
@@ -100,7 +100,7 @@ fun MapScreen(modifier: Modifier = Modifier) {
                     Text(text = "Explore locais perto de você", style = Typography.bodyLarge)
                 }
                 items(count = 5, key = { it }) {
-                    NearbyLocationCard(
+                    MarketCard(
                         nearbyLocation = NearbyLocation(
                             name = "RocketBurger",
                             description = "Na compra de um combo SuperRocket, leve outro combo de sua escolha de graça",

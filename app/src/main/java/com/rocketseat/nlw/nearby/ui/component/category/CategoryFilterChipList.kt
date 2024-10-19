@@ -1,4 +1,4 @@
-package com.rocketseat.nlw.nearby.ui.component.location_filter
+package com.rocketseat.nlw.nearby.ui.component.category
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
 
 @Composable
-fun NearbyFilterList(
+fun CategoryFilterChipList(
     modifier: Modifier = Modifier,
-    types: List<NearbyFilterType> = NearbyFilterType.entries,
-    onSelectedFilterChange: (NearbyFilterType) -> Unit
+    types: List<CategoryFilterChipType> = CategoryFilterChipType.entries,
+    onSelectedFilterChange: (CategoryFilterChipType) -> Unit
 ) {
     var selectedFilterIndex by remember { mutableIntStateOf(types.firstOrNull()?.ordinal ?: -1) }
 
@@ -43,7 +43,7 @@ fun NearbyFilterList(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(items = types, key = { it.ordinal }) { filterType ->
-            NearbyFilter(
+            CategoryFilterChip(
                 type = filterType,
                 isSelected = selectedFilterIndex == filterType.ordinal,
                 onClick = { isSelected ->
@@ -57,7 +57,7 @@ fun NearbyFilterList(
 
 @Preview
 @Composable
-private fun LocationFilterListPreview() {
+private fun CategoryFilterChipListPreview() {
     Box(modifier = Modifier.fillMaxWidth()) {
         Image(
             modifier = Modifier
@@ -67,10 +67,10 @@ private fun LocationFilterListPreview() {
             painter = painterResource(R.drawable.bg_map),
             contentDescription = null
         )
-        NearbyFilterList(
+        CategoryFilterChipList(
             modifier = Modifier,
             onSelectedFilterChange = {
-                Log.d("LocationFilterListPreview", "$it")
+                Log.d("CategoryFilterChipListPreview", "$it")
             }
         )
     }

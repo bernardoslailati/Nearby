@@ -25,9 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
 import com.rocketseat.nlw.nearby.ui.component.button.NearbyButton
-import com.rocketseat.nlw.nearby.ui.component.location_details.NearbyLocationDetailsInfos
-import com.rocketseat.nlw.nearby.ui.component.location_details.NearbyLocationDetailsRegulations
-import com.rocketseat.nlw.nearby.ui.component.location_details.NearbyLocationDetailsUsesCoupon
+import com.rocketseat.nlw.nearby.ui.component.market_details.NearbyLocationDetailsInfos
+import com.rocketseat.nlw.nearby.ui.component.market_details.NearbyLocationDetailsRegulations
+import com.rocketseat.nlw.nearby.ui.component.market_details.NearbyLocationDetailsUsesCoupon
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
