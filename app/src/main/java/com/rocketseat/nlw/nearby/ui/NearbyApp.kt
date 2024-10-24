@@ -12,12 +12,13 @@ import com.rocketseat.nlw.nearby.ui.routes.Home
 import com.rocketseat.nlw.nearby.ui.routes.Splash
 import com.rocketseat.nlw.nearby.ui.routes.Welcome
 import com.rocketseat.nlw.nearby.ui.screen.HomeScreen
+import com.rocketseat.nlw.nearby.ui.screen.HomeViewModel
 import com.rocketseat.nlw.nearby.ui.screen.MarketDetailsScreen
 import com.rocketseat.nlw.nearby.ui.screen.SplashScreen
 import com.rocketseat.nlw.nearby.ui.screen.WelcomeScreen
 
 @Composable
-fun NearbyApp(modifier: Modifier) {
+fun NearbyApp(modifier: Modifier, homeViewModel: HomeViewModel) {
     val navController = rememberNavController()
 
     NavHost(
@@ -46,6 +47,7 @@ fun NearbyApp(modifier: Modifier) {
         composable<Home> {
             HomeScreen(
                 modifier = Modifier.fillMaxSize(),
+                homeViewModel = homeViewModel,
                 onNavigateToMarketDetails = { selectedMarket ->
                     navController.navigate(selectedMarket)
                 }
