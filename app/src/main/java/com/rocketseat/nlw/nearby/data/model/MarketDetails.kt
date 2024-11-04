@@ -3,7 +3,7 @@ package com.rocketseat.nlw.nearby.data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Market(
+data class MarketDetails(
     val id: String,
     val categoryId: String,
     val name: String,
@@ -13,5 +13,6 @@ data class Market(
     val longitude: Double,
     val address: String,
     val phone: String,
-    val cover: String
+    val cover: String,
+    val rules: List<Rule>
 )

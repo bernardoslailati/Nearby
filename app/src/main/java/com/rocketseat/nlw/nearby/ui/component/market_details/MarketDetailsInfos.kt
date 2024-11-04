@@ -15,12 +15,17 @@ import androidx.compose.ui.unit.dp
 import com.rocketseat.nlw.nearby.R
 import com.rocketseat.nlw.nearby.data.model.Market
 import com.rocketseat.nlw.nearby.data.model.mock.mockMarket
+import com.rocketseat.nlw.nearby.ui.screen.market_details.MarketDetailsUiState
+import com.rocketseat.nlw.nearby.ui.screen.market_details.MarketDetailsViewModel
 import com.rocketseat.nlw.nearby.ui.theme.Gray400
 import com.rocketseat.nlw.nearby.ui.theme.Gray500
 import com.rocketseat.nlw.nearby.ui.theme.Typography
 
 @Composable
-fun MarketDetailsInfos(modifier: Modifier = Modifier, market: Market) {
+fun MarketDetailsInfos(
+    modifier: Modifier = Modifier,
+    market: Market
+) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -76,5 +81,8 @@ fun MarketDetailsInfos(modifier: Modifier = Modifier, market: Market) {
 @Preview
 @Composable
 private fun NearbyLocationDetailsInfosPreview() {
-    MarketDetailsInfos(modifier = Modifier.fillMaxWidth(), market = mockMarket)
+    MarketDetailsInfos(
+        modifier = Modifier.fillMaxWidth(),
+        market = mockMarket
+    )
 }

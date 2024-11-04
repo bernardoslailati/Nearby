@@ -1,6 +1,7 @@
 package com.rocketseat.nlw.nearby.data.model
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Immutable
 import com.rocketseat.nlw.nearby.ui.component.category.CategoryFilterChipView
 import kotlinx.serialization.Serializable
 

@@ -21,6 +21,8 @@ object KtorHttpClient {
                         isLenient = true
                         useAlternativeNames = true
                         ignoreUnknownKeys = true
+                        explicitNulls = true
+                        useArrayPolymorphism = true
                         encodeDefaults = false
                     }
                 )

@@ -2,7 +2,9 @@ package com.rocketseat.nlw.nearby.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -11,15 +13,23 @@ import com.rocketseat.nlw.nearby.data.model.Market
 import com.rocketseat.nlw.nearby.ui.routes.Home
 import com.rocketseat.nlw.nearby.ui.routes.Splash
 import com.rocketseat.nlw.nearby.ui.routes.Welcome
-import com.rocketseat.nlw.nearby.ui.screen.HomeScreen
-import com.rocketseat.nlw.nearby.ui.screen.HomeViewModel
-import com.rocketseat.nlw.nearby.ui.screen.MarketDetailsScreen
+import com.rocketseat.nlw.nearby.ui.screen.home.HomeScreen
+import com.rocketseat.nlw.nearby.ui.screen.home.HomeViewModel
+import com.rocketseat.nlw.nearby.ui.screen.market_details.MarketDetailsScreen
 import com.rocketseat.nlw.nearby.ui.screen.SplashScreen
 import com.rocketseat.nlw.nearby.ui.screen.WelcomeScreen
+import com.rocketseat.nlw.nearby.ui.screen.market_details.MarketDetailsViewModel
 
 @Composable
-fun NearbyApp(modifier: Modifier, homeViewModel: HomeViewModel) {
+fun NearbyApp(
+    modifier: Modifier,
+    homeViewModel: HomeViewModel,
+    marketDetailsViewModel: MarketDetailsViewModel
+) {
     val navController = rememberNavController()
+
+    val homeUiState by homeViewModel.uiState.collectAsStateWithLifecycle()
+    val marketDetailsUiState by marketDetailsViewModel.uiState.collectAsStateWithLifecycle()
 
     NavHost(
         modifier = modifier,
@@ -47,7 +57,8 @@ fun NearbyApp(modifier: Modifier, homeViewModel: HomeViewModel) {
         composable<Home> {
             HomeScreen(
                 modifier = Modifier.fillMaxSize(),
-                homeViewModel = homeViewModel,
+                uiState = homeUiState,
+                viewModel = homeViewModel,
                 onNavigateToMarketDetails = { selectedMarket ->
                     navController.navigate(selectedMarket)
                 }
@@ -59,8 +70,9 @@ fun NearbyApp(modifier: Modifier, homeViewModel: HomeViewModel) {
 
             MarketDetailsScreen(
                 modifier = Modifier.fillMaxSize(),
+                uiState = marketDetailsUiState,
+                viewModel = marketDetailsViewModel,
                 market = market,
-                coupons = listOf("AM4345T1", "BM4345T2"),
                 onNavigateBack = {
                     navController.popBackStack()
                 },
