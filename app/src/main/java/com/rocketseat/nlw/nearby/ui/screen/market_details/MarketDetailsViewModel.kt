@@ -1,5 +1,6 @@
 package com.rocketseat.nlw.nearby.ui.screen.market_details
 
+import android.util.Log
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -42,10 +43,11 @@ class MarketDetailsViewModel : ViewModel() {
         }
     }
 
-    fun fetchCoupon(marketId: String) {
+    fun fetchCoupon(qrCodeContent: String) {
         viewModelScope.launch {
-            NearbyRemoteDataSource.patchCoupons(marketId = marketId)
+            NearbyRemoteDataSource.patchCoupons(marketId = qrCodeContent)
                 .onSuccess {
+                    Log.d("OPAOPA", "Success $it")
                     _uiState.update { uiState ->
                         uiState.copy(
                             coupon = it.coupon

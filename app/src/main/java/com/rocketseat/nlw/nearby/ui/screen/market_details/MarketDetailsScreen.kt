@@ -143,7 +143,7 @@ fun MarketDetailsScreen(
                     onClick = {
                         if (uiState.coupon.isNullOrEmpty()) {
                             onScanQRCode()
-                            viewModel.fetchCoupon(marketId = market.id)
+                            // viewModel.fetchCoupon(marketId = market.id)
                         } else {
                             onNavigateBack()
                             viewModel.resetCoupon()

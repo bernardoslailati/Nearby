@@ -1,5 +1,6 @@
 package com.rocketseat.nlw.nearby.ui.screen.home
 
+import android.util.Log
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
@@ -37,7 +38,8 @@ class HomeViewModel : ViewModel() {
                             categories = categories
                         )
                     },
-                    onFailure = { _ ->
+                    onFailure = { error ->
+                        Log.d("OPAOPA", error.message.toString())
                         it.copy(
                             categories = emptyList()
                         )
@@ -59,7 +61,8 @@ class HomeViewModel : ViewModel() {
                             }
                         )
                     },
-                    onFailure = { _ ->
+                    onFailure = { error ->
+                        Log.d("OPAOPA", error.message.toString())
                         it.copy(
                             markets = emptyList(),
                             marketsLatLong = emptyList()
