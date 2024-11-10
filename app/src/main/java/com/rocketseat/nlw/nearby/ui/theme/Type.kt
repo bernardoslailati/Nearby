@@ -15,7 +15,7 @@ val rubikFontFamily = FontFamily(
     Font(R.font.rubik_semibold, FontWeight.SemiBold)
 )
 
-private const val activatePreview = true
+private const val activatePreview = false
 
 val Typography = Typography(
     // "Title XI"
